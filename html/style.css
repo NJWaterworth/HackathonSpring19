@@ -16,6 +16,12 @@ body {
   position: absolute;
 }
 
+#canvasStatusImage{
+  left: 32px;
+  top: 196px;
+  position: absolute;
+}
+
 h1 {
   background-color: green;
   color: white;
