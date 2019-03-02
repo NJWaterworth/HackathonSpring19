@@ -12,7 +12,7 @@ function getPlotPoints()
     var array=[];
 
     for(var i=0;i<distributionCount.length;i++)
-      array.push({x:distributionTime[i],y:distributionCount[i]});
+      array.push({x:distributionTime[i]+480,y:distributionCount[i]});
 
     return array;
 }
@@ -26,7 +26,7 @@ function getStopPoints()
     array[distributionStop[i]]+=distributionCount[i];
 
   for(var i=0;i<array.length;i++)
-    data.push({x:i,y:array[i]});
+    data.push({Label:i,y:array[i]});
 
   return data;
 }
@@ -44,6 +44,14 @@ function saveData()
 
   var myJSON = JSON.stringify(jsonOb);
   localStorage.setItem("passengerJSON", myJSON);
+}
+
+
+function setText()
+{
+  document.getElementById("bus").innerHTML=busCarbon;
+  document.getElementById("car").innerHTML=carCarbon;
+  document.getElementById("total").innerHTML=passengerMiles;
 }
 
 function loadData()

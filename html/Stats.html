@@ -45,6 +45,13 @@
       titleFontSize: 24
       },
       axisX:{
+      labelFormatter: function(num)
+      {
+      var hours = Math.floor(num.value / 60);
+      var minutes = num.value % 60;
+      var s = hours+ ":" + ("0" + minutes).slice(-2);
+      return s;
+    },
       title: "Time(minutes)",
       titleFontSize: 24
       },
@@ -71,7 +78,7 @@
       titleFontSize: 24
       },
       data: [{
-      type: "line",
+      type: "column",
       dataPoints: dataPoints2
 
       }]
@@ -82,9 +89,19 @@
     }
     </script>
 
-    <p id="Fun text">
-      
-      <p>
+    <p id="funText" style="top: 128px; right: 128px; font-size: 20pt; position:absolute;">
+        Today's Bus emmisions:
+        <span id="bus">
+        </span><br><br>
+        Equivalent emmisions from single drivers:
+        <span id="car">
+        </span><br><br>
+        Total passenger miles:
+        <span id="total">
+        </span><br><br>
+
+      </p>
+  <script> setText(); </script>
 
   </body>
   </html>
