@@ -1,12 +1,90 @@
+  <html>
+  <head>
+    <script type="text/javascript" src="Stats.js"></script>
+    <script src="canvasjs.min.js"></script>
+  </head>
 
-<script>
-  function goBack()
-  {
-    window.location.assign("website.html");
-  }
-  </script>
+  <body onload="loadedPage()">
 
-<body>
+    <h1 style ="background-color: green;
+    color: white;
+    padding: 32px 32px;
+    box-shadow: 2px 2px gray;
+    text-shadow: 2px 2px gray;">
+    Green Bus Route
+    </h1>
+
+  <div id="chartContainer" style="height: 200px; width: 300px; margin-left: 8px;"></div>
+  <div id="chartContainer2" style="height: 200px; width: 300px; margin-right: auto;"></div>
+
   <button type="button" onclick="goBack();">Go Back</button>
 
+
+    <script>
+    function goBack()
+    {
+        window.location.assign("website.html");
+    }
+
+    function loadedPage()
+    {
+      loadData();
+
+      var dataPoints = getPlotPoints();
+      var dataPoints2 = getStopPoints();
+
+      var chart = new CanvasJS.Chart("chartContainer", {
+      theme: "light2", // "light1", "light2", "dark1", "dark2"
+      exportEnabled: false,
+      animationEnabled: true,
+      title: {
+      text: "Number of Passengers Over Time"
+      },
+      axisY: {
+      title: "Passengers on Bus",
+      titleFontSize: 24
+      },
+      axisX:{
+      title: "Time(minutes)",
+      titleFontSize: 24
+      },
+      data: [{
+      type: "line",
+      dataPoints: dataPoints
+
+      }]
+      });
+
+      var chart2 = new CanvasJS.Chart("chartContainer2", {
+      theme: "light2", // "light1", "light2", "dark1", "dark2"
+      exportEnabled: false,
+      animationEnabled: true,
+      title: {
+      text: "Passengers on the Bus at each Stop"
+      },
+      axisY: {
+      title: "Total Passengers",
+      titleFontSize: 24
+      },
+      axisX:{
+      title: "Bus Stop",
+      titleFontSize: 24
+      },
+      data: [{
+      type: "line",
+      dataPoints: dataPoints2
+
+      }]
+      });
+
+      chart.render();
+      chart2.render();
+    }
+    </script>
+
+    <p id="Fun text">
+      
+      <p>
+
   </body>
+  </html>
