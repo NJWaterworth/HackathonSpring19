@@ -106,6 +106,7 @@ function moveStop()
   busCarbon+=(distanceStop[stop]/3.26)*8.887;
   carCarbon+=(distanceStop[stop]/24)*8.887*passengerCounter;
   time+=timeStop[stop];
+  passengerMiles=distanceStop[stop]*passengerCounter;
 
   distributionCount.push(passengerCounter);
   distributionStop.push(stop);

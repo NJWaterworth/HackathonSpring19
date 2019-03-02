@@ -49,9 +49,9 @@ function saveData()
 
 function setText()
 {
-  document.getElementById("bus").innerHTML=busCarbon;
-  document.getElementById("car").innerHTML=carCarbon;
-  document.getElementById("total").innerHTML=passengerMiles;
+  document.getElementById("bus").innerHTML=busCarbon.toFixed(3);
+  document.getElementById("car").innerHTML=carCarbon.toFixed(3);
+  document.getElementById("total").innerHTML=passengerMiles.toFixed(3);
 }
 
 function loadData()
@@ -71,4 +71,5 @@ function loadData()
     this.distributionTime.push(obj.arrayTime[i]);
     this.distributionStop.push(obj.arrayStop[i]);
   }
+  setText();
 }
