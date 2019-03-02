@@ -1,3 +1,5 @@
+const socket = io()
+
 var passengerCounter=0;
 var passengerMiles=0;
 var passengerTotal=0;
@@ -19,11 +21,10 @@ var distributionTime = [];
 var distributionStop = [];
 var good = true;
 
-
 function loadedPage()
 {
-  routeImg.src = "greenRoute.png";
-  pointImg.src = "point.png";
+  routeImg.src = "./greenRoute.png";
+  pointImg.src = "./point.png";
 
   loadData();
   renderCounter();
@@ -42,7 +43,7 @@ routeImg.onload = function()
   var ctx = c.getContext("2d");
   ctx.drawImage(routeImg,0,0,c.width,c.height);
 
-  stopImg.src = "stop.png";
+  stopImg.src = "./stop.png";
 }
 
 stopImg.onload = function()
@@ -75,7 +76,7 @@ function renderCounter(){
     x.innerHTML = "Good, carbon reduced".bold();
     x.style.color="green";
     good = true;
-    statusImg.src="clearsky.png";
+    statusImg.src="./clearsky.png";
     document.getElementById("statusMessage").innerHTML = "Good job riding the bus keep it up!";
   }
   else
@@ -84,7 +85,7 @@ function renderCounter(){
     x.innerHTML = "Bad, gained carbon output".bold();
     x.style.color = "red";
     good = false;
-    statusImg.src="smokestacks.png";
+    statusImg.src="./smokestacks.png";
     document.getElementById("statusMessage").innerHTML = "Try riding the bus today! Help reduce your carbon footprint.";
   }
 
@@ -100,7 +101,7 @@ function moveStop()
   var ctx = c.getContext("2d");
 
   ctx.clearRect(0, 0, c.width, c.height);
-  pointImg.src="point.png";
+  pointImg.src="./point.png";
 
   busCarbon+=(distanceStop[stop]/3.26)*8.887;
   carCarbon+=(distanceStop[stop]/24)*8.887*passengerCounter;
@@ -167,3 +168,10 @@ function subractPassenger()
   passengerCounter=Math.max(0,passengerCounter-1);
   document.getElementById("Count").innerHTML = passengerCounter;
 }
+
+socket.on('sensor-data', (content) => {
+	if(content.sensorData.People == 1)
+		addPassenger();
+	else 
+		subractPassenger();
+});
