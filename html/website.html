@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Bus Count information</title>
+<!--Canvous Movement-->
+<script type="text/javascript" src="buttonMove.js">
+    </script>
+<!--CSS to be added--> 
+</head>
+<script>
+function openStatsPage(){
+	window.location.assign("https://www.google.com/")
+}
+
+function renderCounter(){
+	
+	return 3;
+}
+
+function reset(){
+	window.location.reload();
+}
+
+function showImage(src,width,alt){
+	var img = document.createElement(src);
+	img.src = src;
+	img.alt = alt;
+	document.body.appendChild(img);
+}
+
+</script>
+<body  onload="loadedPage()">
+<canvas id="canvasRoute" width="500px" height="700px"></canvas>
+<canvas id="canvasPoint" width="500px" height="700px" 
+ style="position:absolute; left:0; top:0;"></canvas>
+<p id="count">
+counter: 
+<span id="Count">
+<script>
+	document.getElementById("Count").innerHTML = renderCounter();
+</script>
+</span>
+
+</p>
+</body>
+<button type="button" onclick="moveStop();">Advance stop</button>
+<button type="button" onclick="openStatsPage()">More Info</button>
+<button type="button" onclick="reset()">Reset</button>
+
+
+</html>
